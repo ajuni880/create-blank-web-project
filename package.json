@@ -1,15 +1,21 @@
 {
   "name": "create-blank-web-project",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Create blank web project with minimal files.",
+  "main": "./index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./index.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "CLI",
+    "web",
+    "blank",
+    "scaffold"
+  ],
+  "author": "Junaid Aslam",
   "license": "ISC",
-  "dependencies": {
-    "es6-promise": "^4.2.8"
-  }
+  "bin": {
+    "create-blank-web": "./index.js"
+  },
+  "dependencies": {}
 }
