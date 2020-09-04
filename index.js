@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 const currentDir = process.cwd();
 const [/*node path*/, /*filepath*/, projectName] = process.argv;
 const path = require('path');
@@ -13,12 +11,14 @@ if (!projectName) {
 const projectPath = path.resolve(currentDir, projectName);
 const templatesPath = path.resolve(__dirname, 'templates');
 
-run().catch(e => console.log(e));
-
 async function run() {
-  await fs.mkdir(projectPath);
-  await copyFiles();
-  showFeedback();
+  try {
+    await fs.mkdir(projectPath);
+    await copyFiles();
+    showFeedback();
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 async function copyFiles() {
@@ -32,3 +32,5 @@ async function copyFiles() {
 function showFeedback() {
   console.log(`Project created successfully!\n> cd ${projectName}`);
 }
+
+module.exports = run;
