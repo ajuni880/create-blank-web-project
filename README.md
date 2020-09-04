@@ -5,7 +5,7 @@
 npm i -g create-blank-web-project
 ```
 
-## Run the command in the terminal
+## Run the command
 ```
 create-blank my-project
 ```
