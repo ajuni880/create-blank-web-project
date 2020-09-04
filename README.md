@@ -2,10 +2,10 @@
 
 ## Install package globally
 ```
-npm i -g  create-blank-web-project
+npm i -g create-blank-web-project
 ```
 
-## Run the command
+## Run the command in the terminal
 ```
-> create-blank my-project
+create-blank my-project
 ```
