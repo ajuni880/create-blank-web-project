@@ -1,31 +1,25 @@
 const currentDir = process.cwd();
 const [/*node path*/, /*filepath*/, projectName] = process.argv;
 const path = require('path');
-const fs = require('fs').promises;
+const CopyFiles = require('./copy-files');
 
-if (!projectName) {
-  console.log("Please provide a name for your project");
-  return;
-}
-
-const projectPath = path.resolve(currentDir, projectName);
-const templatesPath = path.resolve(__dirname, 'templates');
+let projectPath;
+let templatesPath;
 
 async function run() {
+  if (!projectName) {
+    console.log("Please provide a name for your project");
+    return;
+  }
+
+  projectPath = path.resolve(currentDir, projectName);
+  templatesPath = path.resolve(__dirname, 'templates');
+
   try {
-    await fs.mkdir(projectPath);
-    await copyFiles();
+    await new CopyFiles({ templatesPath, projectPath }).copy();
     showFeedback();
   } catch (e) {
-    console.log(e);
-  }
-}
-
-async function copyFiles() {
-  const templates = await fs.readdir(templatesPath);
-  for await (let filename of templates) {
-    const content = await fs.readFile(path.resolve(templatesPath, filename));
-    await fs.writeFile(path.resolve(projectPath, filename), content);
+    console.log(e.message);
   }
 }
 
